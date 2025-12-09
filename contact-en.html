@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Sadid Law Firm</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { direction: ltr !important; font-family: 'Segoe UI', sans-serif; }
+        .nav-links a::after { left: 0; right: auto; }
+        .page-header h1 { letter-spacing: 1px; }
+        .footer-col h3::before { left: 0; right: auto; }
+        .float-whatsapp { left: 30px; right: auto; }
+        .contact-details-list li { flex-direction: row; }
+    </style>
+</head>
+<body>
+
+    <a href="https://wa.me/966555686168" class="float-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i></a>
+
+    <header>
+        <div class="container">
+            <div class="logo"><img src="logo.png" alt="Sadid"></div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index-en.html">Home</a></li>
+                    <li><a href="about-en.html">About Us</a></li>
+                    <li><a href="services-en.html">Services</a></li>
+                    <li><a href="contact-en.html" class="active">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-tools">
+                <button id="theme-toggle"><i class="fas fa-moon"></i></button>
+                <a href="contact.html" class="lang-switch" style="font-weight:bold;">AR</a>
+                <div class="hamburger"><span></span><span></span><span></span></div>
+            </div>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Contact Us</h1>
+            <div class="breadcrumb">We are here to help you anytime</div>
+        </div>
+    </section>
+
+    <section class="contact-container container">
+        <div class="contact-info-box fade-in-up">
+            <h2>Contact Information</h2>
+            <p>We are happy to receive your inquiries and appointments via:</p>
+            
+            <ul class="contact-details-list">
+                <li>
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Riyadh, Al-Yasmin Dist., Abu Bakr Rd. Intersection (Opposite Hospital).</span>
+                </li>
+                <li>
+                    <i class="fas fa-phone-alt"></i>
+                    <span>+966 55 568 6168</span>
+                </li>
+                <li>
+                    <i class="fas fa-envelope"></i>
+                    <span>info@sadidlaw.com</span>
+                </li>
+                <li>
+                    <i class="fas fa-clock"></i>
+                    <span>Sunday - Thursday: 8:00 AM - 4:30 PM</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="contact-form-box fade-in-up">
+            <form class="contact-form">
+                <input type="text" placeholder="Full Name" required>
+                <input type="email" placeholder="Email Address" required>
+                <input type="tel" placeholder="Phone Number">
+                <textarea placeholder="Your Message or Consultation Details" required></textarea>
+                <button type="submit" class="btn btn-primary">Send Request</button>
+            </form>
+        </div>
+    </section>
+
+    <section class="map-section fade-in-up">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3621.849156477544!2d46.6830694!3d24.8282715!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjTCsDQ5JzQxLjgiTiA0NsKwNDAnNTkuMSJF!5e0!3m2!1sar!2seg!4v1700000000000!5m2!1sar!2seg" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </section>
+
+    <footer>
+        <div class="container footer-content">
+             <div class="footer-col">
+                <h3>Contact Us</h3>
+                <ul class="contact-info">
+                    <li><i class="fas fa-map-marker-alt"></i> Riyadh, Al-Yasmin Dist., Abu Bakr Rd. Intersection</li>
+                    <li><i class="fas fa-phone"></i> +966 55 568 6168</li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright"><p>All Rights Reserved © Sadid Law Firm 2025</p></div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

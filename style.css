@@ -1,0 +1,656 @@
+/* استيراد خط تجوال (Tajawal) ليدعم اللغة العربية بشكل فخم */
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap');
+
+/* =========================================
+   1. متغيرات الألوان والإعدادات العامة
+   ========================================= */
+:root {
+    /* ألوان الهوية البصرية (من اللوجو) */
+    --primary-color: #182C4C;   /* كحلي غامق - للفوتر والهيدر */
+    --secondary-color: #C6A87C; /* ذهبي - للأزرار والأيقونات */
+    --text-color: #333333;      /* لون النصوص */
+    --bg-color: #ffffff;        /* خلفية الموقع */
+    --light-bg: #f9f9f9;        /* خلفية ثانوية فاتحة */
+    --white: #ffffff;
+    --card-shadow: 0 5px 15px rgba(0,0,0,0.05); /* ظل خفيف للكروت */
+    --transition: all 0.3s ease; /* سرعة الحركة */
+}
+
+/* متغيرات الوضع الليلي */
+[data-theme="dark"] {
+    --primary-color: #0f1c30;
+    --text-color: #f0f0f0;
+    --bg-color: #121212;
+    --light-bg: #1e1e1e;
+    --card-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    --white: #1e1e1e;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Tajawal', sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    direction: rtl; /* اتجاه الموقع عربي */
+    overflow-x: hidden;
+    transition: background-color 0.5s ease;
+    line-height: 1.6;
+}
+
+/* =========================================
+   2. الهيدر والقائمة (Header & Navbar)
+   ========================================= */
+header {
+    background: var(--white);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    height: 80px;
+    display: flex;
+    align-items: center;
+}
+
+[data-theme="dark"] header {
+    background: #1a1a1a;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    width: 100%;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo img {
+    height: 50px; /* التحكم في حجم اللوجو */
+    width: auto;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: var(--transition);
+    position: relative;
+}
+
+.nav-links a:hover, 
+.nav-links a.active {
+    color: var(--secondary-color);
+}
+
+/* خط تحت الرابط النشط */
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    right: 0;
+    background-color: var(--secondary-color);
+    transition: width 0.3s;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+    width: 100%;
+}
+
+.header-tools {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+#theme-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: var(--text-color);
+    padding: 5px;
+    transition: var(--transition);
+}
+
+#theme-toggle:hover {
+    color: var(--secondary-color);
+    transform: rotate(20deg);
+}
+
+.hamburger {
+    display: none;
+    cursor: pointer;
+}
+
+/* =========================================
+   3. الصفحة الرئيسية (Hero & Sections)
+   ========================================= */
+.hero {
+    min-height: 100vh; /* تأخذ طول الشاشة */
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, var(--light-bg) 0%, var(--bg-color) 100%);
+    padding-top: 80px; /* عشان الهيدر الثابت */
+    position: relative;
+}
+
+.hero .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.hero-content {
+    flex: 1;
+    max-width: 600px;
+    z-index: 2;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+[data-theme="dark"] .hero h1 {
+    color: var(--secondary-color);
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    opacity: 0.9;
+}
+
+/* الأزرار */
+.btn {
+    padding: 12px 35px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: var(--transition);
+    cursor: pointer;
+    border: none;
+    font-size: 1rem;
+}
+
+.btn-primary {
+    background: var(--secondary-color);
+    color: #fff;
+    border: 2px solid var(--secondary-color);
+}
+
+.btn-primary:hover {
+    background: transparent;
+    color: var(--secondary-color);
+}
+
+.btn-secondary {
+    background: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    margin-right: 15px;
+}
+
+[data-theme="dark"] .btn-secondary {
+    border-color: var(--secondary-color);
+    color: var(--secondary-color);
+}
+
+.btn-secondary:hover {
+    background: var(--primary-color);
+    color: #fff;
+}
+
+[data-theme="dark"] .btn-secondary:hover {
+    background: var(--secondary-color);
+    color: #fff;
+}
+
+/* صورة الهيرو */
+.hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    z-index: 1;
+}
+
+.hero-image img {
+    max-width: 100%;
+    height: auto;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
+}
+
+/* العناوين المشتركة للأقسام */
+.section-title {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.section-title h2 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+[data-theme="dark"] .section-title h2 {
+    color: var(--secondary-color);
+}
+
+.line {
+    width: 80px;
+    height: 4px;
+    background: var(--secondary-color);
+    margin: 0 auto;
+    border-radius: 2px;
+}
+
+/* شبكة الكروت (Preview Cards) */
+.features-grid, .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    padding-bottom: 50px;
+}
+
+.feature-card, .service-card {
+    background: var(--light-bg);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: var(--card-shadow);
+    text-align: center;
+    border-bottom: 3px solid transparent;
+    transition: var(--transition);
+}
+
+.feature-card:hover, .service-card:hover {
+    transform: translateY(-10px);
+    border-bottom-color: var(--secondary-color);
+    background: var(--bg-color);
+}
+
+.icon-box {
+    font-size: 2.5rem;
+    color: var(--secondary-color);
+    margin-bottom: 20px;
+}
+
+.about-preview, .services-preview {
+    padding: 80px 0;
+}
+
+.center-btn {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.btn-outline {
+    border: 2px solid var(--secondary-color);
+    color: var(--secondary-color);
+    padding: 10px 30px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: var(--transition);
+}
+
+.btn-outline:hover {
+    background: var(--secondary-color);
+    color: #fff;
+}
+
+/* =========================================
+   4. الفوتر (Footer)
+   ========================================= */
+footer {
+    background: var(--primary-color);
+    color: #fff;
+    padding: 60px 0 20px;
+    margin-top: 50px;
+    position: relative;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-col h3 {
+    color: var(--secondary-color);
+    margin-bottom: 25px;
+    font-size: 1.4rem;
+    position: relative;
+}
+
+.footer-col h3::before {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    right: 0;
+    width: 40px;
+    height: 2px;
+    background: var(--secondary-color);
+}
+
+.footer-col p {
+    color: #ccc;
+    line-height: 1.8;
+}
+
+.footer-col ul {
+    list-style: none;
+}
+
+.footer-col ul li {
+    margin-bottom: 12px;
+}
+
+.footer-col a {
+    color: #ccc;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.footer-col a:hover {
+    color: var(--secondary-color);
+    padding-right: 5px;
+}
+
+.contact-info li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    color: #ccc;
+}
+
+.contact-info i {
+    color: var(--secondary-color);
+    margin-top: 5px;
+}
+
+.copyright {
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 20px;
+    color: #aaa;
+    font-size: 0.9rem;
+}
+
+/* =========================================
+   5. تنسيقات الصفحات الداخلية (About, Services, Contact)
+   ========================================= */
+
+/* هيدر الصفحات الداخلية */
+.page-header {
+    background: linear-gradient(rgba(24, 44, 76, 0.95), rgba(24, 44, 76, 0.9)), url('header-bg.jpg'); /* تأكد من وجود صورة باسم header-bg.jpg أو احذف الـ url */
+    background-color: var(--primary-color); /* لون احتياطي لو مفيش صورة */
+    background-size: cover;
+    background-position: center;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    margin-top: 80px;
+}
+
+.page-header h1 {
+    font-size: 3rem;
+    color: var(--secondary-color);
+    margin-bottom: 10px;
+}
+
+.breadcrumb {
+    font-size: 1.1rem;
+    opacity: 0.8;
+    color: #eee;
+}
+
+/* صفحة من نحن */
+.about-section {
+    padding: 80px 0;
+}
+
+.vision-mission-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.vm-card {
+    background: var(--light-bg);
+    padding: 40px;
+    border-radius: 10px;
+    border-right: 4px solid var(--secondary-color); /* خط ذهبي ع اليمين */
+    box-shadow: var(--card-shadow);
+    transition: var(--transition);
+}
+
+.vm-card:hover {
+    transform: translateY(-5px);
+    background: var(--bg-color);
+}
+
+.vm-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+[data-theme="dark"] .vm-card h3 {
+    color: var(--secondary-color);
+}
+
+/* صفحة اتصل بنا */
+.contact-container {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 50px;
+    padding: 80px 20px;
+}
+
+.contact-info-box h2 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+[data-theme="dark"] .contact-info-box h2 {
+    color: var(--secondary-color);
+}
+
+.contact-details-list {
+    list-style: none;
+    margin-top: 30px;
+}
+
+.contact-details-list li {
+    margin-bottom: 25px;
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    font-size: 1.1rem;
+}
+
+.contact-details-list i {
+    color: var(--secondary-color);
+    font-size: 1.4rem;
+    background: rgba(198, 168, 124, 0.1);
+    padding: 10px;
+    border-radius: 50%;
+}
+
+/* نموذج الاتصال */
+.contact-form-box {
+    background: var(--light-bg);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: var(--card-shadow);
+}
+
+.contact-form input, 
+.contact-form textarea {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background: var(--bg-color);
+    color: var(--text-color);
+    font-family: inherit;
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.contact-form input:focus, 
+.contact-form textarea:focus {
+    border-color: var(--secondary-color);
+    outline: none;
+    box-shadow: 0 0 5px rgba(198, 168, 124, 0.2);
+}
+
+.contact-form textarea {
+    height: 150px;
+    resize: none;
+}
+
+.map-section {
+    width: 100%;
+    height: 450px;
+    background: #ccc;
+}
+
+/* زر الواتساب العائم */
+.float-whatsapp {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 30px;
+    right: 30px;
+    background-color: #25d366;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.float-whatsapp:hover {
+    background-color: #128C7E;
+    transform: scale(1.1);
+}
+
+/* =========================================
+   6. الانيميشن (Animations)
+   ========================================= */
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+
+.fade-in-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* خلفية الجسيمات (Particles Container) */
+#particles-js {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    opacity: 0.5;
+}
+
+/* =========================================
+   7. التجاوب مع الموبايل (Responsive)
+   ========================================= */
+@media (max-width: 991px) {
+    .hero h1 { font-size: 2.5rem; }
+    .hero-image { display: none; /* إخفاء الصورة في التابلت والموبايل للتركيز ع المحتوى */ }
+    .contact-container { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: none; /* مخفية وتظهر بالـ JS */
+        flex-direction: column;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background: var(--bg-color);
+        padding: 20px;
+        box-shadow: 0 5px 5px rgba(0,0,0,0.1);
+        text-align: center;
+    }
+
+    .nav-links.active {
+        display: flex;
+        animation: slideDown 0.3s ease forwards;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .hamburger span {
+        display: block;
+        width: 25px;
+        height: 3px;
+        background: var(--text-color);
+        margin: 5px 0;
+        transition: 0.3s;
+    }
+    
+    .hero { text-align: center; justify-content: center; }
+    .hero .container { justify-content: center; }
+    .hero-btns { display: flex; flex-direction: column; gap: 15px; }
+    .btn-secondary { margin-right: 0; }
+    
+    .page-header h1 { font-size: 2rem; }
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
